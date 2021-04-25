@@ -1,0 +1,800 @@
+{
+	"info": {
+		"_postman_id": "d10a3504-17c7-4451-b07e-eed2801b95b9",
+		"name": "AudioFile",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post Song",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"",
+							"var moment = require('moment');",
+							"pm.environment.set('timestamp', moment().format((\"YYYY-MM-DD-HH.mm.SS.SSSSSS\")));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name_of_song\": \"hello\", \n\"duration\" : 1\n\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/song/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"song",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post AudioBook",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"duration\" : 1,\n\"title_of_the_audiobook\": \"hope\",\n\"author_of_audiobook\": \"Mayank\",\n\"narrator\": \"Arya\"\n\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/audio_book/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"audio_book",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Podcast",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/Podcast/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"Podcast",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Podcast (400 Error)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/Podcast/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"Podcast",
+						""
+					]
+				},
+				"description": "This Field is required error"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Podcast (405 Method Not allowed error)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/Podcast/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"Podcast",
+						"1"
+					]
+				},
+				"description": "405 Method Not allowed error raises\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve Podcast (get by id)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/Podcast/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"Podcast",
+						"1"
+					]
+				},
+				"description": "retrieve operation"
+			},
+			"response": []
+		},
+		{
+			"name": "Retreive Podcast (get by id) (Invalid pk Error) Bad request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/Podcast/dvskjdakvjkad",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"Podcast",
+						"dvskjdakvjkad"
+					]
+				},
+				"description": "400 Bad request error when user hits some Invalid Id"
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid type of audio Error",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/jvxjdvjzjdvz/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"jvxjdvjzjdvz",
+						"1"
+					]
+				},
+				"description": "when user provide invalid type_of_audio \nThrow 400 Bad request error"
+			},
+			"response": []
+		},
+		{
+			"name": "Song get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/song/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"song",
+						""
+					]
+				},
+				"description": "here get all the songs\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Song get by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/song/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"song",
+						"1"
+					]
+				},
+				"description": "Retrieve operation"
+			},
+			"response": []
+		},
+		{
+			"name": "Podcast get by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/podcast/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"podcast",
+						"1"
+					]
+				},
+				"description": "get by id (retreive operation)"
+			},
+			"response": []
+		},
+		{
+			"name": "Podcast get all ",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/podcast/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"podcast",
+						"1"
+					]
+				},
+				"description": "All Podcast audio type\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Put Song",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name_of_song\": \"hello_name\", \n\"duration\" : 2\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/song/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"song",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put AudioBook",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"duration\" : 1,\n\"title_of_the_audiobook\": \"hope\",\n\"author_of_audiobook\": \"Nikhil\",\n\"narrator\": \"Arya\"\n\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/audio_book/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"audio_book",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "404 Not found error",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"duration\" : 1,\n\"title_of_the_audiobook\": \"hope\",\n\"author_of_audiobook\": \"Nikhil\",\n\"narrator\": \"Arya\"\n\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/audio_book/900",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"audio_book",
+						"900"
+					]
+				},
+				"description": "when request for the data whose entry is not exists in our database\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Post Podcast",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"duration\" : 1,\n\"name_of_podcast\": \"hope\",\n\"host\": \"Mayank\",\n\"participants\": \"Arya, Kumar, Bhawna\"\n\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/Podcast/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"Podcast",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put Podcast",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var moment = require('moment');",
+							"",
+							"pm.environment.set('currentdate', moment().format((\"YYYY-MM-DD\")));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"duration\" : 1,\n\"name_of_podcast\": \"hope\",\n\"host\": \"Nikhil\",\n\"participants\": \"Arya, Kumar, Bhawna\"\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/Podcast/10",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"Podcast",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Podcast",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/Podcast/5/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"Podcast",
+						"5",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Song",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/song/5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"song",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all AudioBook",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"duration\" : 1,\n\"title_of_the_audiobook\": \"hope\",\n\"author_of_audiobook\": \"Mayank\",\n\"narrator\": \"Arya\"\n\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/audio_book/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"audio_book",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "(get by id) AudioBook",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"duration\" : 1,\n\"title_of_the_audiobook\": \"hope\",\n\"author_of_audiobook\": \"Mayank\",\n\"narrator\": \"Arya\"\n\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/audio_book/3",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"audio_book",
+						"3"
+					]
+				},
+				"description": "Retrieve\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete AudioBook",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"duration\" : 1,\n\"title_of_the_audiobook\": \"hope\",\n\"author_of_audiobook\": \"Mayank\",\n\"narrator\": \"Arya\"\n\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/audio/audio_book/6",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"audio",
+						"audio_book",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
