@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import AudioBook, Song, Podcast
-from datetime import datetime
+import django
+
 
 # helping function
 def pop_out_extra_fields(request_data, request_keys, type_of_audio):
@@ -23,8 +24,19 @@ def pop_out_extra_fields(request_data, request_keys, type_of_audio):
     return request_data
 
 
+def check_upload_time(attr):
+    upload_time = attr.get('upload_time')
+    if upload_time is not None:
+        if upload_time < django.utils.timezone.now:
+            raise serializers.ValidationError({"error": "upload time cannot be in past"})
+
+
 class AudioBookSerializer(serializers.ModelSerializer):
     """"serailizer for audio book (type of audio)"""
+
+    def validate(self, attr):
+        check_upload_time(attr)
+        return attr
 
     def create(self, validated_data):
         """creates the new entry in the database as row"""
@@ -54,6 +66,10 @@ class AudioBookSerializer(serializers.ModelSerializer):
 
 class PodcastSerializer(serializers.ModelSerializer):
 
+    def validate(self, attr):
+        check_upload_time(attr)
+        return attr
+
     def create(self, validated_data):
         """creates the new entry in the database as row"""
         podcast_data = validated_data["data"]
@@ -77,6 +93,10 @@ class PodcastSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class SongSerializer(serializers.ModelSerializer):
+
+    def validate(self, attr):
+        check_upload_time(attr)
+        return attr
 
     def create(self, validated_data):
         """creates the new entry in the database as row"""
