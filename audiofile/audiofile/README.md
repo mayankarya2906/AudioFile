@@ -13,7 +13,7 @@
     - Duration in number of seconds – (mandatory, integer, positive)
     - Uploaded time – (mandatory, Datetime, cannot be in the past)
 
-**Podcast file fields:***
+**Podcast file fields:**
     - ID – (mandatory, integer, unique)
     - Name of the podcast – (mandatory, string, cannot be larger than 100
     characters)
