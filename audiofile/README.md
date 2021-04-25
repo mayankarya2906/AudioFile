@@ -1,4 +1,5 @@
 **PROJECT DESCRIPTION**
+    
     In this basically we are building the api's (CRUD) using django rest framewrok and django orm as (ORM) and using the SQL database (sqllite3).
     Audio file type can be one of the following:
     1 – Song
@@ -12,7 +13,7 @@
     - Duration in number of seconds – (mandatory, integer, positive)
     - Uploaded time – (mandatory, Datetime, cannot be in the past)
 
-**Podcast file fields:***
+**Podcast file fields:**
     - ID – (mandatory, integer, unique)
     - Name of the podcast – (mandatory, string, cannot be larger than 100
     characters)
