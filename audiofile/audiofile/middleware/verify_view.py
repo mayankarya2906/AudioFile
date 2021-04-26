@@ -1,10 +1,11 @@
 from django.http import JsonResponse
 from rest_framework import status
 
+
 class VerifyView(object):
     def __init__(self, get_response):
         self.get_response = get_response
-    
+
     def __call__(self, request):
         response = self.get_response(request)
         return response
@@ -22,5 +23,6 @@ class VerifyView(object):
             # if pk is not integer then it throws Invalid pk/id error
             pk = view_kwargs.get('pk')
             if not pk.isdigit():
-                return JsonResponse({"error": "Invalid pk/id {}".format(pk)}, status=status.HTTP_400_BAD_REQUEST)
+                return JsonResponse({"error": "Invalid pk/id {}".format(pk)},
+                                    status=status.HTTP_400_BAD_REQUEST)
         return None

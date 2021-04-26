@@ -1,8 +1,7 @@
-from rest_framework import viewsets, status, serializers
+from rest_framework import viewsets, status
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from .serializer import AudioBookSerializer, SongSerializer, PodcastSerializer
-from rest_framework.decorators import action
 from .models import Song, AudioBook, Podcast
 
 
@@ -36,7 +35,7 @@ class AudioFileViewset(viewsets.ViewSet):
         }
         model_name = mapping_of_instance.get(type_of_audio)
         return model_name
-    
+
     def get_instance(self, model_name, pk):
         """"return type <model instance>
         params: model_name
@@ -56,7 +55,7 @@ class AudioFileViewset(viewsets.ViewSet):
         model_serializer.is_valid(raise_exception=True)
         # save the instance
         model_serializer.save(data=request_data)
-        #show the data
+        # show the data
         response_data = model_serializer.data
         return Response(response_data, status=status.HTTP_201_CREATED)
 
@@ -70,14 +69,15 @@ class AudioFileViewset(viewsets.ViewSet):
         instance = self.get_instance(model_name=model_name, pk=pk)
         model_serializer_class = self.get_model_serailizer(type_of_audio)
         # send instance to serializer
-        model_serializer = model_serializer_class(instance=instance, data=request_data, partial=True)
+        model_serializer = model_serializer_class(
+            instance=instance, data=request_data, partial=True)
         # raise exception in case of error
         model_serializer.is_valid(raise_exception=True)
         model_serializer.save(data=request.data)
         # show data as response
         response = model_serializer.data
         return Response(response, status=status.HTTP_200_OK)
-    
+
     def delete(self, request, pk=None, format=None, **kwargs):
         """delete the instance from database permanently"""
         type_of_audio = self.kwargs.get('type_of_audio').lower()
@@ -86,7 +86,8 @@ class AudioFileViewset(viewsets.ViewSet):
         instance = self.get_instance(model_name=model_name, pk=pk)
         # delete it
         instance.delete()
-        return Response({"msg": "sucessfully deleted"}, status=status.HTTP_200_OK)
+        return Response({"msg": "sucessfully deleted"},
+                        status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk=None, format=None, **kwargs):
         """get by id/pk"""

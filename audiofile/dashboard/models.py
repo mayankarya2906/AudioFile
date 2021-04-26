@@ -1,6 +1,5 @@
 # import dependencies
 from django.db import models
-from datetime import datetime
 from django_mysql.models import ListCharField
 from django.db.models import CharField
 import django
@@ -20,7 +19,8 @@ class Song(models.Model):
 
 
 class Podcast(models.Model):
-    """ Podcast model: fields: name_of_podcast, duration, upload_time, host, participants"""
+    """ Podcast model: fields: name_of_podcast, duration,
+        upload_time, host, participants"""
     # character limitation of 100
     name_of_podcast = models.CharField(max_length=100)
     duration = models.IntegerField()
@@ -32,7 +32,8 @@ class Podcast(models.Model):
         base_field=CharField(max_length=100),
         size=10,
         max_length=(10 * 101),
-        null = True # 10 * 100 character nominals, plus commas
+        null=True
+        # 10 * 100 character nominals, plus commas
     )
 
     class Meta:
@@ -42,10 +43,11 @@ class Podcast(models.Model):
 
 
 class AudioBook(models.Model):
-    """ AudioBook model: fields: title_of_the_audiobook, author_of_audiobook, upload_time, narrator, duration"""
+    """ AudioBook model: fields: title_of_the_audiobook, author_of_audiobook,
+        upload_time, narrator, duration"""
     title_of_the_audiobook = models.CharField(max_length=100)
     author_of_audiobook = models.CharField(max_length=100)
-    narrator  = models.CharField(max_length=100)
+    narrator = models.CharField(max_length=100)
     duration = models.IntegerField()
     upload_time = models.DateTimeField(default=django.utils.timezone.now)
 
